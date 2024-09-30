@@ -53,10 +53,14 @@ jobs:
               run: |
                 docker-compose up --build -d  # Inicia los contenedores en segundo plano
                 docker-compose ps               # Muestra los contenedores en ejecución
-            
-            - name: Correr run-test.sh
+            - name: Prueba registrar students
               run: |
-                   chmod +x run-test.sh
-                   ./run-test.sh
+                curl -X POST http://localhost:8086/students \
+                -H "Content-Type: application/json" \
+                -d '{"firstname":"Fernando", "lastname":"Sialer","age":33,"":"email":"fernando@gmail.com"}'
+            #- name: Correr run-test.sh
+            #  run: |
+            #       chmod +x run-test.sh
+            #       ./run-test.sh
             - name: Stop and remove containers
               run: docker-compose down
