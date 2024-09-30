@@ -54,8 +54,9 @@ jobs:
                 docker-compose up --build -d  # Inicia los contenedores en segundo plano
                 docker-compose ps               # Muestra los contenedores en ejecución
             
-            - name: Run tests
+            - name: Correr run-test.sh
               run: |
-                docker-compose exec students-service ./run-tests.sh  # Reemplaza students-service con el nombre del servicio que deseas utilizar
+                   chmod +x run-test.sh
+                   ./run-test.sh
             - name: Stop and remove containers
               run: docker-compose down
