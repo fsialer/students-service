@@ -12,7 +12,7 @@ services:
   students-service:
     build:
       context: .
-      dockerfile: Dockerfile.backup
+      dockerfile: Dockerfile
     image: students-service2:latest
     container_name: students-service
     ports:

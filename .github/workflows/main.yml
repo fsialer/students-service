@@ -1,0 +1,43 @@
+name: Crear imagen docker de students
+
+on: 
+    push:
+        branches:
+            - develop
+            - main
+    pull_request:
+        branches:
+            - develop
+            - main
+
+
+jobs:
+    construir_contenedor:
+        runs-on: ubuntu-latest
+        steps:
+            - name: actualizar paquetes
+              run: apt-get update && apt-get upgrade -y
+
+            - name: clonar repositorio
+              uses: actions/checkout@v4.1.7
+
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v2
+
+            - name: Cache Docker layers
+              uses: actions/cache@v3
+              with:
+                path: /tmp/.buildx-cache
+                key: ${{ runner.os }}-buildx-${{ github.sha }}
+                restore-keys: |
+                  ${{ runner.os }}-buildx-
+            - name: Build and run with Docker Compose
+              run: |
+                docker-compose up --build -d  # Inicia los contenedores en segundo plano
+                docker-compose ps               # Muestra los contenedores en ejecución
+            
+            - name: Run tests
+              run: |
+                docker-compose exec students-service ./run-tests.sh  # Reemplaza students-service con el nombre del servicio que deseas utilizar
+            - name: Stop and remove containers
+              run: docker-compose down
