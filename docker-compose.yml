@@ -12,8 +12,8 @@ services:
   students-service:
     build:
       context: .
-      dockerfile: Dockerfile.backup
-    image: students-service2:latest
+      dockerfile: Dockerfile
+    image: students-service:latest
     container_name: students-service
     ports:
       - "8086:8080"

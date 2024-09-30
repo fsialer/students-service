@@ -17,11 +17,11 @@ import lombok.Setter;
 @AllArgsConstructor
 public class StudentCreateRequest {
 
-    @NotBlank(message = "Field firstname cannot be null or blank")
-    private String firstname;
+    @NotBlank(message = "Field firstName cannot be null or blank")
+    private String firstName;
 
-    @NotBlank(message = "Field lastname cannot be null or blank")
-    private String lastname;
+    @NotBlank(message = "Field lastName cannot be null or blank")
+    private String lastName;
 
     @NotNull(message = "Field age cannot be null")
     @Min(value=0, message = "Field age must be greater than zero")
