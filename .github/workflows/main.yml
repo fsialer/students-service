@@ -53,6 +53,8 @@ jobs:
               run: |
                 docker-compose up --build -d  # Inicia los contenedores en segundo plano
                 docker-compose ps               # Muestra los contenedores en ejecución
+            - name: Esperando que la api este lista
+              run: sleep 15
             - name: Prueba registrar students
               run: |
                 curl -X POST http://localhost:8086/students \
