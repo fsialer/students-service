@@ -15,9 +15,6 @@ jobs:
     construir_contenedor:
         runs-on: ubuntu-latest
         steps:
-            - name: actualizar paquetes
-              run: apt-get update && apt-get upgrade -y
-
             - name: clonar repositorio
               uses: actions/checkout@v4.1.7
 
