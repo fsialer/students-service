@@ -13,7 +13,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: students-service2:latest
+    image: students-service:latest
     container_name: students-service
     ports:
       - "8086:8080"
