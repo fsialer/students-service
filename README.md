@@ -62,7 +62,7 @@ Este microservicio ayudara a gestionar al estudiantes.
     mvn spring-boot:run
     ```
 ## Crear contenedores
-1. Ejecutar el comando:
+1. Ejecutar el comando docker-compose:
  ```
 docker-compose up -d --build
 
