@@ -23,9 +23,7 @@ Este microservicio ayudara a gestionar al estudiantes.
 | PUT    | `/students/{id}` | Actualizar un estudiante existente | `{ "name": "NuevoNombre", "age": 21, ... }` |
 | DELETE | `/students/{id}` | Eliminar un estudiante por ID      | N/A                                         |
 
-### Integración con API de Matrículas
 
-- La API de estudiantes interactúa con la API externa de matrículas para gestionar las inscripciones de los estudiantes en cursos. Los detalles de integración (endpoints de la API externa y autenticación) se configuran en el archivo `application.yml`.
 
 ## Instalación
 
