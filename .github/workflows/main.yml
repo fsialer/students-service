@@ -49,20 +49,18 @@ jobs:
                 sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
                 sudo chmod +x /usr/local/bin/docker-compose
                 docker-compose --version  # Verifica que Docker Compose esté instalado
+
             - name: Build and run with Docker Compose
               run: |
                 docker-compose up --build -d  # Inicia los contenedores en segundo plano
                 docker-compose ps               # Muestra los contenedores en ejecución
+
             - name: Esperando que la api este lista
               run: sleep 15
-            - name: Prueba registrar students
+
+            - name: Correr run-test.sh para registrar students de prueba
               run: |
-                curl -X POST http://localhost:8086/students \
-                -H "Content-Type: application/json" \
-                -d '{"firstName":"Fernando", "lastName":"Sialer","age":33,"email":"fernando@gmail.com","address":"dsd"}'
-            #- name: Correr run-test.sh
-            #  run: |
-            #       chmod +x run-test.sh
-            #       ./run-test.sh
+                   chmod +x run-test.sh
+                   ./run-test.sh
             - name: Stop and remove containers
               run: docker-compose down
