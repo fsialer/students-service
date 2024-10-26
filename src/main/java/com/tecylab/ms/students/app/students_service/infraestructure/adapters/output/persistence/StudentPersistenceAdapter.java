@@ -25,8 +25,18 @@ public class StudentPersistenceAdapter implements StudentPersistencePort {
     }
 
     @Override
+    public List<Student> findByIds(Iterable<Long> ids) {
+        return mapper.toStudents(jpaRepository.findAllById(ids));
+    }
+
+    @Override
     public List<Student> findAll() {
         return mapper.toStudents(jpaRepository.findAll());
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return jpaRepository.existsByEmailIgnoreCase(email);
     }
 
     @Override
@@ -36,7 +46,7 @@ public class StudentPersistenceAdapter implements StudentPersistencePort {
     }
 
     @Override
-    public void delelteById(Long id) {
+    public void deleleById(Long id) {
         jpaRepository.deleteById(id);
     }
 

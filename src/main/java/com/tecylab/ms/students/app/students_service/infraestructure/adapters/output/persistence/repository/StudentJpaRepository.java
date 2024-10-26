@@ -6,4 +6,5 @@ import com.tecylab.ms.students.app.students_service.infraestructure.adapters.out
 
 public interface StudentJpaRepository extends JpaRepository<StudentEntity,Long> {
 
+    boolean existsByEmailIgnoreCase(String email);
 }
