@@ -3,11 +3,11 @@ package com.tecylab.ms.students.app.students_service.application.services;
 import java.util.List;
 
 import com.tecylab.ms.students.app.students_service.application.ports.output.ExternalCoursesOutputPort;
+import com.tecylab.ms.students.app.students_service.application.ports.output.StudentPersistencePort;
 import com.tecylab.ms.students.app.students_service.domain.exceptions.StudentEmailAlreadyExistsException;
 import org.springframework.stereotype.Service;
 
 import com.tecylab.ms.students.app.students_service.application.ports.input.StudentInputPort;
-import com.tecylab.ms.students.app.students_service.application.ports.output.StudentPersistencePort;
 import com.tecylab.ms.students.app.students_service.domain.exceptions.StudentNotFoundException;
 import com.tecylab.ms.students.app.students_service.domain.models.Student;
 
@@ -20,9 +20,11 @@ public class StudentService implements StudentInputPort {
     private final StudentPersistencePort persistencePort;
     private final ExternalCoursesOutputPort coursesOutputPort;
 
+
     @Override
     public Student findById(Long id) {
-        return persistencePort.findById(id).orElseThrow(StudentNotFoundException::new);
+        return persistencePort.findById(id)
+                .orElseThrow(StudentNotFoundException::new);
     }
 
     @Override
@@ -37,7 +39,7 @@ public class StudentService implements StudentInputPort {
 
     @Override
     public Student save(Student student) {
-        if(persistencePort.existsByEmail(student.getEmail())){
+        if (persistencePort.existsByEmail(student.getEmail())) {
             throw new StudentEmailAlreadyExistsException(student.getEmail());
         }
         return persistencePort.save(student);
@@ -45,9 +47,10 @@ public class StudentService implements StudentInputPort {
 
     @Override
     public Student update(Long id, Student student) {
-        if(persistencePort.existsByEmail(student.getEmail())){
+        if (persistencePort.existsByEmail(student.getEmail())) {
             throw new StudentEmailAlreadyExistsException(student.getEmail());
         }
+
         return persistencePort.findById(id)
                 .map(oldStudent -> {
                     oldStudent.setFirstName(student.getFirstName());
@@ -60,17 +63,15 @@ public class StudentService implements StudentInputPort {
     }
 
     @Override
-    public void delelteById(Long id) {
-        // if(persistencePort.findById(id).isPresent()){
-        // persistencePort.delelteById(id);
-        // }
-        // throw new StudentNotFoundException();
+    public void deleteById(Long id) {
+//    if (persistencePort.findById(id).isPresent()) {
+//      persistencePort.deleteById(id);
+//    }
+//    throw new StudentNotFoundException();
         if (persistencePort.findById(id).isEmpty()) {
             throw new StudentNotFoundException();
         }
-        persistencePort.deleleById(id);
+        persistencePort.deleteById(id);
         coursesOutputPort.remoStudentFromCollection(id);
-
     }
-
 }

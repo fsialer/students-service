@@ -57,7 +57,7 @@ public class StudentRestAdapter {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id){
-        inputPort.delelteById(id);
+        inputPort.deleteById(id);
     }
 
 }
