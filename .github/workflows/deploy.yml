@@ -29,6 +29,10 @@ jobs:
       - name: Build with Maven
         run: mvn clean package
 
+      - uses: azure/login@v2
+        with:
+          creds: '{"clientId":"${{ secrets.AZURE_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_CLIENT_SECRET }}","tenantId":"${{ secrets.AZURE_TENANT_ID }}"}'
+
       - name: Deploy to Azure
         uses: azure/webapps-deploy@v2
         with:
