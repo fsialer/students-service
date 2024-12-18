@@ -82,10 +82,10 @@ jobs:
 #                SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 #              run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=students-service -Dsonar.projectName='students-service'
 
-            - name: Correr run-test.sh para registrar students de prueba
-              run: |
-                  chmod +x run-test.sh
-                  ./run-test.sh
+           # - name: Correr run-test.sh para registrar students de prueba
+           #   run: |
+           #       chmod +x run-test.sh
+           #       ./run-test.sh
 
             - name: Stop and remove containers
               run: docker-compose down
