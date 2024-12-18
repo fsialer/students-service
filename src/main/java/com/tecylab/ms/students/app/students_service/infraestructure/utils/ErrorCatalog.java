@@ -14,4 +14,5 @@ public enum ErrorCatalog {
 
     private final String code;
     private final String message;
+
 }
