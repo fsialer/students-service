@@ -33,6 +33,6 @@ jobs:
       - name: Compilar proyecto java
         run: |
             ./mvnw clean install
-      - name: Ejecutar proyecto java
-        run: |
-            java -jar target/*.jar --server.port=8080
+      #- name: Ejecutar proyecto java
+      #  run: |
+      #      java -jar target/*.jar --server.port=8080
