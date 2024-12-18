@@ -71,3 +71,7 @@ Para ejecutar los tests unitarios y de integración:
 
 ```bash
 mvn test
+```
+```bash
+mvn clean verify sonar:sonar -Dsonar.projectKey=<name_project_sq> -Dsonar.host.url=<host_sq>
+```

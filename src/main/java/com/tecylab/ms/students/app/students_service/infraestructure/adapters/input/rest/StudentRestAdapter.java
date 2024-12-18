@@ -3,9 +3,7 @@ package com.tecylab.ms.students.app.students_service.infraestructure.adapters.in
 import java.net.URI;
 import java.util.List;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.tecylab.ms.students.app.students_service.application.ports.input.StudentInputPort;
 import com.tecylab.ms.students.app.students_service.infraestructure.adapters.input.rest.mapper.StudentRestMapper;
@@ -17,12 +15,6 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("/students")
@@ -40,6 +32,11 @@ public class StudentRestAdapter {
     @GetMapping("/{id}")
     public StudentResponse findById(@PathVariable Long id) {
         return restMapper.toStudentResponse(inputPort.findById(id));
+    }
+
+    @GetMapping("/find-by-ids")
+    public List<StudentResponse> findByIds(@RequestParam List<Long> ids) {
+        return restMapper.toStudentResponses(inputPort.findByIds(ids));
     }
 
     @PostMapping
@@ -60,7 +57,7 @@ public class StudentRestAdapter {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id){
-        inputPort.delelteById(id);
+        inputPort.deleteById(id);
     }
 
 }

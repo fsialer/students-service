@@ -28,5 +28,3 @@ COPY --from=build-image-stage /app/$MS_NAME/target/students-service-0.0.1-SNAPSH
 EXPOSE 8080
 
 CMD ["java", "-jar", "students-service-0.0.1-SNAPSHOT.jar"]
-
-CMD ["java", "-jar", "students-service-0.0.1-SNAPSHOT.jar"]

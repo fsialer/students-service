@@ -6,8 +6,9 @@ import java.util.List;
 public interface StudentInputPort {
 
     Student findById(Long id);
+    List<Student> findByIds(Iterable<Long> ids);
     List<Student> findAll();
     Student save(Student student);
     Student update(Long id, Student student);
-    void delelteById(Long id);
+    void deleteById(Long id);
 }
